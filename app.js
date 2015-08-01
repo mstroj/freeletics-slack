@@ -1,9 +1,9 @@
 var request = require("request");
 
-var token = '';
+var user = '';
 
 request({
-    url: "http://api.freeletics.com/v2/login.json",
+    url: "https://api.freeletics.com/v2/login.json",
     method: "POST",
     json: {
         'user' : {'email' : 'public.mcs@gmail.com', 'password' : 'test1234' }
@@ -12,21 +12,23 @@ request({
     followRedirect: true,
     maxRedirects: 10
 }, function(error, response, body) {
-    console.log(body);
+    //console.log(body);
+    user = body.user;
+
+    request({
+        uri: "https://api.freeletics.com/v2/profile.json",
+        method: "GET",
+        headers: {
+            'Authorization': 'Token token=' + user.auth_token
+        },
+        timeout: 10000,
+        followRedirect: true,
+        maxRedirects: 10
+    }, function(error, response, body) {
+        console.log(body);
+    });
+
 });
 
 
-/*
-request({
-    uri: "http://api.freeletics.com/v2/profile.json",
-    method: "GET",
-    headers: {
-        'Authorization': 'Token token=EIClwYn7_Jt1_gvX_TMblg'
-    },
-    timeout: 10000,
-    followRedirect: true,
-    maxRedirects: 10
-}, function(error, response, body) {
-    console.log(body);
-});
-*/
+
