@@ -57,14 +57,16 @@ function postToSlack(data) {
         wo = woFeedEntry.workout,
         woMinutes = Math.floor(woFeedEntry.seconds/60),
         woSeconds = woFeedEntry.seconds - woMinutes * 60,
-        star = woFeedEntry.star ? ':star:' : '',
+        star = woFeedEntry.star ? ' :star: ' : ' ',
         personalBest = woFeedEntry.personal_best ? ' PB ' : '',
+        twobytwo = wo.category_slug == 'home' ? ' 2x2 ' : '',
         postText = woUser.first_name + ' ' + woUser.last_name +
             ' finished workout ' + wo.title + ' in ' +
             woMinutes + ':' + woSeconds + '!',
-        postTitle = wo.title + ' ' +
-            star + ' ' + personalBest +
-            woMinutes + ':' + woSeconds ;
+        postTitle = wo.title + twobytwo +
+            ' ('+ wo.fitness_variant + ') ' +
+            star + personalBest +
+            woMinutes + ':' + woSeconds;
 
     request({
         url: 'https://hooks.slack.com/services/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',
@@ -72,15 +74,15 @@ function postToSlack(data) {
         json: {
             //'text' : postText ,
             'attachments' : [{
-                'text' : wo.fitness_variant,
+                'text' : woFeedEntry.description,
                 'color' : '#000000',
                 'fallback' : postText,
-                'image_url' : woFeedEntry.picture.feed,
+                'thumb_url' : woFeedEntry.picture.feed,
                 'author_name' : woUser.first_name + ' ' + woUser.last_name,
                 'author_link' : freeleticsUrl + 'users/' + woUser.id + '/feed',
                 'author_icon' : woUser.profile_pictures.small,
                 'title' : postTitle,
-                'title_link' : freeleticsUrl + 'community/feed-entries/training' + woFeedEntry.id
+                'title_link' : freeleticsUrl + 'community/feed-entries/training/' + woFeedEntry.id
             }]
         },
         timeout: 10000,
