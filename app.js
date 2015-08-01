@@ -1,6 +1,7 @@
 var request = require("request");
 
 var user = '';
+var feedEntries;
 
 getUser();
 
@@ -35,7 +36,10 @@ function getFeedWithFollowings() {
         timeout: 10000,
         followRedirect: true,
         maxRedirects: 10
-    }, function () {
-        console.log(arguments);
-    });
+    }, parseFeed);
 };
+
+function parseFeed (err, res, body) {
+    feedEntries = JSON.parse(body);
+    console.log(feedEntries);
+}
