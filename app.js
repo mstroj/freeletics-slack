@@ -4,7 +4,7 @@ request({
     uri: "http://api.freeletics.com/v2/profile.json",
     method: "GET",
     headers: {
-        'Authorization': 'Token token=VbiB5C1RC4xGkTfvzLRa7g'
+        'Authorization': 'Token token=Slk3LkmJ74vEyFUQLmSPCQ'
     },
     timeout: 10000,
     followRedirect: true,
