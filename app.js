@@ -78,7 +78,7 @@ function postToSlack(data) {
                 'color' : '#000000',
                 'fallback' : postText,
                 'thumb_url' : woFeedEntry.picture.feed,
-                'author_name' : woUser.first_name + ' ' + woUser.last_name,
+                'author_name' : woUser.first_name + ' ' + woUser.last_name + ' (Level ' + woUser.level + ')',
                 'author_link' : freeleticsUrl + 'users/' + woUser.id + '/feed',
                 'author_icon' : woUser.profile_pictures.small,
                 'title' : postTitle,
