@@ -1,0 +1,26 @@
+{
+  "name": "freeletics-slack",
+  "version": "0.0.1",
+  "description": "slack integration for freeletics",
+  "main": "app.js",
+  "scripts": {
+    "test": "test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mstroj/freeletics-slack"
+  },
+  "keywords": [
+    "freeletics",
+    "slack"
+  ],
+  "author": "mstroj, tizianorullo",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/mstroj/freeletics-slack/issues"
+  },
+  "homepage": "https://github.com/mstroj/freeletics-slack",
+  "devDependencies": {
+    "request": "^2.60.0"
+  }
+}
